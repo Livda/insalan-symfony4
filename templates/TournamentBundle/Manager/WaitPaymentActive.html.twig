@@ -1,0 +1,34 @@
+<div class="frame frame-active">
+    <header class="full">
+        <div class="step pull-left">
+            {{ counter }}
+        </div>
+        <div class="title pull-left">Paiement en attente</div>
+        <br class="clear">
+    </header>
+    <div class="text">
+ {% if tournament.isOpenedNow %}
+        <h2><strong>Paiement par chèque</strong></h2><br>
+        Vous devez envoyer un chèque de {{ constant('ONLINE_PRICE', manager) }}€ à l'ordre de <strong>"AEIR InsaLan"</strong> par la poste à l'adresse suivante : 
+        <br>
+        Thomas Colonna<br>
+        5 rue Jean Brulelou dit Brito<br>
+        35700, Rennes<br>
+        <br>
+        Votre inscription sera validé par le staff à la réception du chèque.<br>
+{% endif %}
+        <h2><strong>Paiement sur place</strong></h2><br>
+        <h3>Le tarif manager sur place s'élève à {{ constant('ONSITE_PRICE', manager) }}€.</h3><br/>
+        Vous pourrez régler sur place en liquide, par chèque ou par carte bancaire (avec une majoration de 1€ pour la CB).<br>
+        <br/></br>
+
+        <h2><strong>Points importants</strong></h2><br/>
+        <ul class="shift">
+            <li>Si vous coachez une équipe, celle-ci ne doit pas comporter de remplaçant afin que vous ayez la place de vous installer.</li>
+        </ul>
+        </br>
+    </div>
+    <a class="btn btn-primary ctrl grid-10 pull-left" href="{{ path('insalan_tournament_user_index') }}">Ok</a>
+    <br class="clear">
+</div>
+

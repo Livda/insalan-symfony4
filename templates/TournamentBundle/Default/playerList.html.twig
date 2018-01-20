@@ -1,0 +1,82 @@
+{% extends 'InsaLanTournamentBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets 'bundles/insalan/css/tournament2.css' filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block title %}
+  {{ parent() }} - Joueurs
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+
+<div class="bg-{{ tournament.type }}">
+
+<header class="game">
+<div class="container">
+    <img style="height:100px" src="{{ asset(tournament.getUploadDir() ~ tournament.logoPath) }}" alt="Logo"/>
+    {{ tournament.name }}
+</div>
+</header>
+
+<article>
+  <header>
+    <h2>Joueurs validés</h2>
+  </header>
+
+  <section>
+    {% set count=0 %}
+    {% for p in players %}
+    {% if p.validated == 2 %}
+    <div class="frame frame-active grid-5 pull-left" style="background-color: rgba(0,0,0,.5)">
+        <header>
+            <div class="title pull-left">
+                {{count + 1}}. <a href="{{ path('insalan_tournament_default_teamdetails', {id: p.id}) }}">{{ p.name }}</a>
+            </div>
+            <br class="clear">
+        </header>
+    </div>
+    {% set count=count+1 %}
+        {% if count % 2 == 0%}
+        <br class="clear">
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+    <br class="clear">
+  </section>
+</article>
+
+<article>
+  <header>
+    <h2>Joueurs en cours d'inscription</h2>
+  </header>
+
+  <section>
+    {% set count=0 %}
+    {% for p in players %}
+    {% if p.validated != 2 %}
+    <div class="frame frame-active grid-5 pull-left" style="background-color: rgba(0,0,0,.5)">
+        <header>
+            <div class="title pull-left">
+                {{count+1}}. {{ p.name }}
+            </div>
+            <br class="clear">
+        </header>
+    </div>
+    {% set count=count+1 %}
+        {% if count % 2 == 0%}
+        <br class="clear">
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+    <br class="clear">
+  </section>
+</article>
+</div>
+
+{% endblock %}
+
