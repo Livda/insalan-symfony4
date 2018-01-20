@@ -1,0 +1,7 @@
+App\NewsBundle\Entity\Slider:
+    slider_template (template):
+        title: '<sentence()>'
+
+    slider{1..20} (extends slider_template):
+        subtitle: '<sentence()>'
+        link: '<link()>'
