@@ -1,4 +1,4 @@
-App\NewsBundle\Entity\Slider:
+App\Entity\Slider:
     slider_template (template):
         title: '<sentence()>'
 

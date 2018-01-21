@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\NewsBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Enum\Status;
 
 /**
- * @ORM\Entity(repositoryClass="App\NewsBundle\Repository\NewsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\NewsRepository")
  */
 class News
 {

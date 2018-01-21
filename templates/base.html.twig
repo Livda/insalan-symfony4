@@ -6,8 +6,13 @@
         <meta content="{% block description %}Site de l'InsaLan{% endblock %}" name="Description" />
         {% block stylesheets %}
         {% endblock %}
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('favicon/manifest.json') }}">
+        <link rel="mask-icon" href="{{ asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
+        <meta name="theme-color" content="#ffffff">
 
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('build/images/favicon.ico') }}"  />
         <link href="//fonts.googleapis.com/css?family=PT+Sans%7COpen+Sans:300%7COswald" rel="stylesheet" type="text/css"/>
     </head>
 
@@ -106,7 +111,7 @@
             <a id="logo" href="{{ path('homepage') }}"></a>
             <a id="facebook" href="https://www.facebook.com/insalan"></a>
             <a id="twitter" href="https://twitter.com/insalan"></a>
-            <div id="mail"><a href="mailto:contact@insalan.fr">contact@insalan.fr</a></div>
+            <div id="mail"><a href="mailto:contact@insalan.fr"><img src="{{ asset('img/mail.png') }}"></a></div>
           </div>
         </aside>
 

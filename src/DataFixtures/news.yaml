@@ -1,7 +1,7 @@
 parameters:
     news_status: ['created', 'activated', 'deactivated']
 
-App\NewsBundle\Entity\News:
+App\Entity\News:
     news_template (template):
         title: '<sentence()>'
         category: '<word()>'
