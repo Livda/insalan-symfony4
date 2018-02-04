@@ -37,25 +37,25 @@
                     Déconnexion
                 </a>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right" style="margin-left: 10px;">
-                        Mon compte
-                    </a>
-                    <!-- Change the route to user dashboard once set up -->
-                    <a href="{{ path('sonata_admin_dashboard') }}" class="btn2 bnt2-ncolor pull-right">
-                        Admin
-                    </a>
+                        <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right" style="margin-left: 10px;">
+                            Mon compte
+                        </a>
+                        <!-- Change the route to user dashboard once set up -->
+                        <a href="{{ path('sonata_admin_dashboard') }}" class="btn2 bnt2-ncolor pull-right">
+                            Admin
+                        </a>
                     {% else %}
-                    <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right">
-                        Mon compte
-                    </a>
+                        <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right">
+                            Mon compte
+                        </a>
                     {% endif %}
                 {% else %}
-                <a href="{{ path('fos_user_registration_register') }}" class="btn2 pull-right" style="margin-left: 10px;">
-                    Inscription
-                </a>
-                <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right">
-                    Connexion
-                </a>
+                    <a href="{{ path('fos_user_registration_register') }}" class="btn2 pull-right" style="margin-left: 10px;">
+                        Inscription
+                    </a>
+                    <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right">
+                        Connexion
+                    </a>
                 {% endif %}
             </div>
         </aside>
@@ -180,7 +180,7 @@
     {% endblock %}
 
     {% block javascripts %}
-        <script type="text/javascript" src="{{ assets('build/js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

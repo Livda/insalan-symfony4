@@ -277,14 +277,14 @@
                 </header>
 
                 <section>
-                    {{ n.text | markdown }}
+                    {#{{ n.text | markdown }}#}
                 </section>
             </article>
         {% endfor %}
 
     </section>
     <aside class="twitter">
-        <a class="twitter-timeline"  href="https://twitter.com/insalan" data-widget-id="300559677375258624">Tweets de @insalan</a>
+        <a class="twitter-timeline" href="https://twitter.com/insalan" data-widget-id="300559677375258624">Tweets de @insalan</a>
         <script>
             !function(d,s,id){
                 var js,
@@ -302,53 +302,9 @@
     </aside>
     <br class="clear"/>
 
-    {% endblock %}
+{% endblock %}
 
 
-    {% block javascripts %}
-        {{ parent() }}
-
-        <script type="text/javascript">
-            //<![CDATA[
-            window.addEvent('domready', function() {
-                var carousel = $$('aside.carousel');
-                for (var i = 0; i < carousel.length; ++i) {
-                    var links = carousel[i].getElements('.items a');
-                    links.activeId = 0;
-                    links.pause = false;
-
-                    carousel[i].addEvent('mouseenter', function() { links.pause = true; });
-                    carousel[i].addEvent('mouseleave', function() { links.pause = false; });
-
-                    links.each(function(e, j) {
-                        e.addEvent('click', function(ev) {
-                            e.getParent('.items').getElements('a').removeClass('active');
-                            this.addClass('active');
-
-                            var picture = e.getParent('aside.carousel').getElements('.picture');
-                            picture.setStyle('display', 'none');
-                            picture[j].setStyle('display', '');
-
-                            var title = e.getParent('aside.carousel').getElements('.title > div');
-                            title.setStyle('display', 'none');
-                            title[j].setStyle('display', '');
-
-                            var open = e.getParent('aside.carousel').getElements('.open > a');
-                            open.setStyle('display', 'none');
-                            open[j].setStyle('display', '');
-
-                            ev.stop();
-                            links.activeId = j;
-                        });
-                    });
-
-                    links.slideShow = window.setInterval(function() {
-                        if (links.pause) return;
-                        links.activeId = (links.activeId + 1) % links.length;
-                        links[links.activeId].click();
-                    }, 5000);
-                }
-            });
-            //]]>
-        </script>
-    {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

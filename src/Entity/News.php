@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Enum\Status;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Enum\Status;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NewsRepository")
  */
 class News
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -63,7 +62,7 @@ class News
      */
     public function __construct()
     {
-        $this->status = "created";
+        $this->status = 'created';
         // initialize createdAt & upatedAt to current server time
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\News;
-use App\Entity\Slider;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -32,6 +31,6 @@ class HomeController extends Controller
     public function forumAction()
     {
         // the redirection is in 302 to avoid the vistor's browsers caching this redirection FOR EVER
-        return $this->redirect("http://old.insalan.fr/forum", 302);
+        return $this->redirect('http://old.insalan.fr/forum', 302);
     }
 }
