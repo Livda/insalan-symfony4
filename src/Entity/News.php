@@ -14,45 +14,56 @@ use Symfony\Component\Validator\Constraints as Assert;
 class News
 {
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=50, nullable=false)
-     * @Assert\Choice(
-     *     choices={Status::ALL_STATUS},
-     *     message="Une news doit avoir un status valide"
-     * )
+     * @Assert\Choice(choices={Status::ALL_STATUS})
      */
-    protected $status;
+    private $status;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=50, nullable=false)
-     * @Assert\NotBlank(message="Une news doit avoir un titre non vide")
+     * @Assert\NotBlank()
      */
-    protected $title;
+    private $title;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=50, nullable=false)
-     * @Assert\NotBlank(message="Une news doit avoir une catégorie non vide")
+     * @Assert\NotBlank()
      */
-    protected $category;
+    private $category;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="text", nullable=true)
      */
-    protected $text;
+    private $text;
 
     /**
+     * @var \DateTime
+     *
      * @ORM\Column(type="datetime", nullable=false)
      * @Assert\NotNull()
      */
     private $createdAt;
 
     /**
+     * @var \DateTime
+     *
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $updatedAt;
@@ -62,15 +73,13 @@ class News
      */
     public function __construct()
     {
-        $this->status = 'created';
+        $this->status = Status::CREATED;
         // initialize createdAt & upatedAt to current server time
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId(): int
@@ -79,46 +88,30 @@ class News
     }
 
     /**
-     * Set category
-     *
-     * @param string $category
-     *
-     * @return News
+     * @param int $id
      */
-    public function setCategory(string $category): self
+    public function setId(int $id): void
     {
-        $this->category = $category;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get category
-     *
      * @return string
      */
-    public function getCategory(): string
+    public function getStatus(): string
     {
-        return $this->category;
+        return $this->status;
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return News
+     * @param string $status
      */
-    public function setTitle(string $title): self
+    public function setStatus(string $status): void
     {
-        $this->title = $title;
-
-        return $this;
+        $this->status = $status;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle(): string
@@ -127,39 +120,46 @@ class News
     }
 
     /**
-     * Set text
-     *
-     * @param string $text
-     *
-     * @return News
+     * @param string $title
      */
-    public function setText(string $text): self
+    public function setTitle(string $title): void
     {
-        $this->text = $text;
-
-        return $this;
+        $this->title = $title;
     }
 
     /**
-     * Get text
-     *
-     * @return null|string
+     * @return string
      */
-    public function getText(): ?string
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory(string $category): void
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return string
+     */
+    public function getText(): string
     {
         return $this->text;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): self
+    /**
+     * @param string $text
+     */
+    public function setText(string $text): void
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->text = $text;
     }
 
     /**
-     * Get createdAt
-     *
      * @return \DateTime
      */
     public function getCreatedAt(): \DateTime
@@ -168,26 +168,26 @@ class News
     }
 
     /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return News
+     * @param \DateTime $createdAt
      */
-    public function setUpdatedAt(\DateTime $updatedAt): self
+    public function setCreatedAt(\DateTime $createdAt): void
     {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
+        $this->createdAt = $createdAt;
     }
 
     /**
-     * Get updatedAt
-     *
      * @return \DateTime
      */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 }

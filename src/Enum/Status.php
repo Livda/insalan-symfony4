@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enum;
 
-class Status
+class Status extends Enum
 {
     const CREATED = 'created';
     const ACTIVATED = 'activated';
@@ -15,9 +15,4 @@ class Status
         self::ACTIVATED,
         self::DEACTIVATED,
     ];
-
-    public function getChoices()
-    {
-        return self::ALL_STATUS;
-    }
 }

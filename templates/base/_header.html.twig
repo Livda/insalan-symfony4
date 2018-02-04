@@ -1,0 +1,59 @@
+<header>
+    <a href="{{ path('homepage') }}">
+        <img src="{{ asset('img/logo-noyear.png') }}" alt="InsaLan" />
+    </a>
+
+    {% block top_infos %}
+        <aside>
+            <div class="input">
+                {% if app.user is defined and app.user %}
+                    {#<a href="{{ path('fos_user_security_logout') }}" class="btn2 pull-right" style="margin-left: 10px;">#}
+                    <a href="#">
+                        Déconnexion
+                    </a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        {#<a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right" style="margin-left: 10px;">#}
+                        <a href="#">
+                            Mon compte
+                        </a>
+                        {#Change the route to user dashboard once set up#}
+                        {#<a href="{{ path('sonata_admin_dashboard') }}" class="btn2 bnt2-ncolor pull-right">#}
+                        <a href="#">
+                            Admin
+                        </a>
+                    {% else %}
+                        {#<a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right">#}
+                        <a href="#">
+                            Mon compte
+                        </a>
+                    {% endif %}
+                {% else %}
+                    {#<a href="{{ path('fos_user_registration_register') }}" class="btn2 pull-right" style="margin-left: 10px;">#}
+                    <a href="#">
+                        Inscription
+                    </a>
+                    {#<a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right">#}
+                    <a href="#">
+                        Connexion
+                    </a>
+                {% endif %}
+            </div>
+        </aside>
+
+        <nav>
+            <h1>XIIIème édition</h1>
+            <ul>
+                <li><a href="{{ path('homepage') }}">Accueil</a></li>
+                {#<li><a href="{{ path('insalan_tournament_default_index') }}">Tournois</a></li>#}
+                <li><a href="#">Tournois</a></li>
+                {#<li><a href="{{ path('insalan_information_default_cosplay') }}">Cosplay</a></li>#}
+                <li><a href="#">Cosplay</a></li>
+                {#<li><a href="{{ path('insalan_information_default_faq') }}">Informations</a></li>#}
+                <li><a href="#">Informations</a></li>
+                {#<li><a href="{{ path('insalan_news_default_forum') }}">Forum</a></li>#}
+                <li><a href="#">Forum</a></li>
+                {#<li><a href="{{ path('insalan_pizza_default_index') }}">Pizzas</a></li> #}
+            </ul>
+        </nav>
+    {% endblock top_infos %}
+</header>

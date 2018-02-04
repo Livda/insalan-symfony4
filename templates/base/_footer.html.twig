@@ -1,0 +1,86 @@
+<footer>
+    <div>
+        <aside>
+            <div>
+                <a href="{{ path('homepage') }}">Site Insalan</a>
+                <a href="https://www.facebook.com/insalan">Facebook</a>
+                <a href="https://twitter.com/insalan">Twitter</a>
+                <a href="mailto:contact@insalan.fr">Email</a>
+            </div>
+        </aside>
+
+        {% block bottom_infos %}
+            <nav>
+                <ul>
+                    <li>
+                        <header>
+                            {#<a href="{{ path('insalan_tournament_default_index') }}">Tournois</a>#}
+                            <a href="#">Tournois</a>
+                        </header>
+                        <div>
+                            <ul>
+                                <li><a href="{{ path('homepage') }}">Accueil</a></li>
+                                {#<li><a href="{{ path('insalan_information_default_rules') }}">Règlement</a></li>#}
+                                {#<li><a href="{{ path('insalan_user_default_index') }}">Connexion</a></li>#}
+                                <li><a href="#">Connexion</a></li>
+                                {#<li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>#}
+                                <li><a href="#">Inscription</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <header>
+                            {#<a href="{{ path('insalan_information_default_faq') }}">Infos</a>#}
+                            <a href="#">Infos</a>
+                        </header>
+                        <div>
+                            <ul>
+                                {#<li><a href="{{ path('insalan_information_default_home') }}#rewards">Récompenses</a></li>#}
+                                {#<li><a href="{{ path('insalan_news_default_index') }}">Déroulement</a></li>#}
+                                {#<li><a href="{{ path('insalan_tournament_default_index') }}">Jeux</a></li>#}
+                                {#<li><a href="{{ path('insalan_news_default_index') }}">Prix</a></li>#}
+                                <li><a href="#">Déroulement</a></li>
+                                <li><a href="#">Jeux</a></li>
+                                <li><a href="#">Prix</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <header><a href="{{ path('homepage') }}">InsaLan.fr</a></header>
+                        <ul>
+                            {#<li><a href="{{ path('insalan_news_default_index') }}">News</a></li>#}
+                            <li><a href="#">News</a></li>
+                            {#<li><a href="http://www.insalan.fr/gallery/">Galerie</a></li>#}
+                            {#<li><a href="{{ path('insalan_stream_default_index') }}">Stream</a></li>#}
+                            <li><a href="http://old.insalan.fr/forum/">Forum</a></li>
+                            {#<li><a href="{{ path('insalan_information_default_faq') }}#contact">Contact</a></li>#}
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div style="margin-top: 40px; float: right">
+                    <div class="partner partner-small" style="display: inline; margin: 0px 10px 0px 10px;">
+                        <a href="http://aeir.asso.insa-rennes.fr">
+                            <img style="height: 60px;" src="{{ asset('bundles/insalan/img/partenaires/aeir.png') }}" alt="AEIR" />
+                        </a>
+                    </div>
+                    <div class="partner partner-small" style="display: inline; margin: 0px 10px 0px 10px;">
+                        <a href="http://www.insa-rennes.fr">
+                            <img style="height: 60px;" src="{{ asset('bundles/insalan/img/partenaires/insa-rennes.png') }}" alt="INSA Rennes"/>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        {% endblock %}
+        <div id="copyright">
+            <p>
+                © 2014-2018 InsaLan <span>|</span>
+                Design by <a href="http://www.alecahain.fr/">Aceltis</a> <span>|</span>
+                Code by <a href="http://nhurman.fr/">Nicolas</a>, <a href="https://www.lesterpig.com/">Loïck</a>,
+                <a href="http://quentin.dufour.tk">Quentin</a> &amp; <a href="http://richer.tk/">Maximilien</a>
+            </p>
+        </div>
+    </div>
+</footer>

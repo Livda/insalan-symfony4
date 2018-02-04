@@ -1,197 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8"/>
-        <title>{% block title %}InsaLan{% endblock %}</title>
-        <meta content="{% block description %}Site de l'InsaLan{% endblock %}" name="Description" />
-        {% block stylesheets %}
-        {% endblock %}
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
-        <link rel="manifest" href="{{ asset('favicon/manifest.json') }}">
-        <link rel="mask-icon" href="{{ asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
-        <meta name="theme-color" content="#ffffff">
-
-        <link href="//fonts.googleapis.com/css?family=PT+Sans%7COpen+Sans:300%7COswald" rel="stylesheet" type="text/css"/>
+        {% include 'base/_head.html.twig' %}
     </head>
 
-    <body id="body">
+    <body>
+        {% include 'base/_header.html.twig' %}
 
-    {% block main_header %}
-    <header>
-        <div class="container">
-            <div class="logo">
-                <div class="pattern"></div>
-                <a href="{{ path('homepage') }}">
-                    <img src="{{ asset('img/logo-noyear.png') }}" alt="InsaLan"/>
-                </a>
-            </div>
-        </div>
+        <main>
+            {% for message in app.session.flashbag.get('info') %}
+                <p>{{ message }}</p>
+            {% endfor %}
 
-        {% block top_infos %}
-        <aside>
-            <div class="input">
-                {% if app.user is defined and app.user %}
-                <a href="{{ path('fos_user_security_logout') }}" class="btn2 pull-right" style="margin-left: 10px;">
-                    Déconnexion
-                </a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right" style="margin-left: 10px;">
-                            Mon compte
-                        </a>
-                        <!-- Change the route to user dashboard once set up -->
-                        <a href="{{ path('sonata_admin_dashboard') }}" class="btn2 bnt2-ncolor pull-right">
-                            Admin
-                        </a>
-                    {% else %}
-                        <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right">
-                            Mon compte
-                        </a>
-                    {% endif %}
-                {% else %}
-                    <a href="{{ path('fos_user_registration_register') }}" class="btn2 pull-right" style="margin-left: 10px;">
-                        Inscription
-                    </a>
-                    <a href="{{ path('insalan_tournament_user_index') }}" class="btn2 btn2-nocolor pull-right">
-                        Connexion
-                    </a>
-                {% endif %}
-            </div>
-        </aside>
+            {% for message in app.session.flashbag.get('error') %}
+                <p>{{ message }}</p>
+            {% endfor %}
 
-        <nav>
-            <h1 style="text-align: center; font-size: 40px; font-weight: bold; color: #FFF; font-family: OpenSansCond">
-                XIIIème édition
-            </h1>
-            <ul>
-                <li>
-                    <a href="{{ path('homepage') }}">
-                        Accueil
-                    </a>
-                </li>
-                <li><a href="{{ path('insalan_tournament_default_index') }}">Tournois</a></li>
-                <li><a href="{{ path('insalan_information_default_cosplay') }}">Cosplay</a></li>
-                <li><a href="{{ path('insalan_information_default_faq') }}">Informations</a></li>
-                <li><a href="{{ path('insalan_news_default_forum') }}">Forum</a></li>
-                {# <li><a href="{{ path('insalan_pizza_default_index') }}">Pizzas</a></li> #}
-            </ul>
-        </nav>
-        {% endblock top_infos %}
-    </header>
-    {% endblock main_header %}
+            {% block body %}{% endblock %}
 
-    <section class="container">
-      {% for message in app.session.flashbag.get('info') %}
-        <p class="alert-info">{{ message }}</p>
-      {% endfor %}
+            {% include 'base/_fixed_buttons.html.twig' %}
+        </main>
 
-      {% for message in app.session.flashbag.get('error') %}
-        <p class="alert-error">{{ message }}</p>
-      {% endfor %}
+        {% include 'base/_footer.html.twig' %}
 
-      {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      <div class="social">
-        <a id="twitter" target="_blank" href="https://twitter.com/insalan"></a><br />
-        <a id="facebook" target="_blank" href="https://www.facebook.com/insalan"></a><br />
-        <a id="mail" href="mailto:contact@insalan.fr">contact@insalan.fr</a><br />
-      </div>
-
-      <div class="clear"></div>
-    </section>
-
-    {% block rawbody %}{% endblock %}
-
-    {% block main_bottom %}
-    <footer>
-      <div>
-        <aside>
-          <div>
-            <a id="logo" href="{{ path('homepage') }}"></a>
-            <a id="facebook" href="https://www.facebook.com/insalan"></a>
-            <a id="twitter" href="https://twitter.com/insalan"></a>
-            <div id="mail"><a href="mailto:contact@insalan.fr"><img src="{{ asset('img/mail.png') }}"></a></div>
-          </div>
-        </aside>
-
-        {% block bottom_infos %}
-        <nav>
-          <ul>
-            <li>
-              <header><a href="{{ path('insalan_tournament_default_index') }}">Tournois</a></header>
-              <div>
-                <ul>
-                  <li><a href="{{ path('homepage') }}">Accueil</a></li>
-                  <!-- <li><a href="{{ path('insalan_information_default_rules') }}">Règlement</a></li> -->
-                  <li><a href="{{ path('insalan_user_default_index') }}">Connexion</a></li>
-                  <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
-                </ul>
-              </div>
-            </li>
-
-            <li>
-              <header><a href="{{ path('insalan_information_default_faq') }}">Infos</a></header>
-              <div>
-                <ul>
-                  <!-- <li><a href="{{ path('insalan_information_default_home') }}#rewards">Récompenses</a></li> -->
-                  <li><a href="{{ path('insalan_news_default_index') }}">Déroulement</a></li>
-                  <li><a href="{{ path('insalan_tournament_default_index') }}">Jeux</a></li>
-                  <li><a href="{{ path('insalan_news_default_index') }}">Prix</a></li>
-                </ul>
-              </div>
-            </li>
-
-            <li>
-              <header><a href="{{ path('homepage') }}">InsaLan.fr</a></header>
-              <ul>
-                <li><a href="{{ path('insalan_news_default_index') }}">News</a></li>
-                {#<li><a href="http://www.insalan.fr/gallery/">Galerie</a></li>
-                <li><a href="{{ path('insalan_stream_default_index') }}">Stream</a></li>#}
-                <li><a href="http://old.insalan.fr/forum/">Forum</a></li>
-                <li><a href="{{ path('insalan_information_default_faq') }}#contact">Contact</a></li>
-              </ul>
-            </li>
-          </ul>
-          <div style="margin-top: 40px; float: right">
-            <div class="partner partner-small" style="display: inline; margin: 0px 10px 0px 10px;">
-              <a href="http://aeir.asso.insa-rennes.fr">
-                <img style="height: 60px;" src="{{ asset('bundles/insalan/img/partenaires/aeir.png') }}" alt="AEIR" />
-              </a>
-            </div>
-            <div class="partner partner-small" style="display: inline; margin: 0px 10px 0px 10px;">
-              <a href="http://www.insa-rennes.fr">
-                <img style="height: 60px;" src="{{ asset('bundles/insalan/img/partenaires/insa-rennes.png') }}" alt="INSA Rennes"/>
-              </a>
-            </div>
-          </div>
-        </nav>
+                ga('create', '{{ ga_tracking }}', 'auto');
+                ga('send', 'pageview');
+            </script>
         {% endblock %}
-        <div id="copyright">
-          <p>
-            © 2014-2018 InsaLan <span>|</span>
-            Design by <a href="http://www.alecahain.fr/">Aceltis</a> <span>|</span>
-            Code by <a href="http://nhurman.fr/">Nicolas</a>, <a href="https://www.lesterpig.com/">Loïck</a>,
-              <a href="http://quentin.dufour.tk">Quentin</a> &amp; <a href="http://richer.tk/">Maximilien</a>
-          </p>
-        </div>
-      </div>
-    </footer>
-    {% endblock %}
-
-    {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', '{{ ga_tracking }}', 'auto');
-        ga('send', 'pageview');
-
-        </script>
-    {% endblock %}
-  </body>
+    </body>
 </html>
 
