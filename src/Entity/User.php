@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Danio\Store\QueryBuilder\User")
  *
- * @UniqueEntity("email", groups={"Register"})
+ * @UniqueEntity("email")
  */
 class User implements AdvancedUserInterface
 {
@@ -65,7 +65,7 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      *
-     * @Assert\NotBlank(groups={"EditPassword", "Register"})
+     * @Assert\NotBlank()
      * @Assert\Length(max=4096, min=6)
      */
     private $plainPassword;
@@ -73,8 +73,7 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      *
-     * @Assert\NotBlank(groups={"EditPassword"})
-     * @SecurityAssert\UserPassword(groups={"EditPassword"})
+     * @Assert\NotBlank()
      */
     private $currentPassword;
 
@@ -95,7 +94,7 @@ class User implements AdvancedUserInterface
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable="false")
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $credit = 0;
 
@@ -214,7 +213,7 @@ class User implements AdvancedUserInterface
      */
     public function getSalt(): void
     {
-        return null; // We use bcrypt, the salt is contained withing the password
+        return; // We use bcrypt, the salt is contained withing the password
     }
 
     /**

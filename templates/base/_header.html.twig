@@ -1,11 +1,11 @@
 <header>
     <a href="{{ path('homepage') }}">
-        <img src="{{ asset('img/logo-noyear.png') }}" alt="InsaLan" />
+        <img src="{{ asset('images/logo-noyear.png') }}" alt="InsaLan" />
     </a>
 
     {% block top_infos %}
         <aside>
-            <div class="input">
+            <div>
                 {% if app.user is defined and app.user %}
                     {#<a href="{{ path('fos_user_security_logout') }}" class="btn2 pull-right" style="margin-left: 10px;">#}
                     <a href="#">
