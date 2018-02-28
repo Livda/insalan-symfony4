@@ -36,4 +36,12 @@ class HomeController extends Controller
         // the redirection is in 302 to avoid the vistor's browsers caching this redirection FOR EVER
         return $this->redirect('http://old.insalan.fr/forum', 302);
     }
+
+    /**
+     * @Route("/faq/", name="faq")
+     */
+    public function faqAction()
+    {
+        return $this->render('faq.html.twig');
+    }
 }
