@@ -1,0 +1,22 @@
+version: '2.1'
+
+volumes:
+  database-data: {}
+
+services:
+  database:
+    build: 'database'
+    image: danio-base-mariadb
+    environment:
+        MYSQL_ROOT_PASSWORD: insalan
+    volumes:
+        - "database-data:/var/lib/mysql"
+    ports:
+        - 3306:3306
+
+  insalan:
+    build: 'website'
+    links:
+      - database
+    volumes:
+      - "../..:/var/www"

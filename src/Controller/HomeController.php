@@ -44,4 +44,12 @@ class HomeController extends Controller
     {
         return $this->render('faq.html.twig');
     }
+
+    /**
+     * @Route("/contact/", name="contact")
+     */
+    public function contactAction()
+    {
+        return $this->render('contact.html.twig');
+    }
 }
